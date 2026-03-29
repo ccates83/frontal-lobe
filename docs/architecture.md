@@ -134,5 +134,6 @@ After completing work, `frontal-lobe` emits a structured summary:
 ## Related Pages
 
 - [Agent Reference](agents.md) — full agent list and file format
+- [Meta-Tooling](meta-tooling.md) — the meta domain that modifies the system itself
 - [Command Reference](commands.md) — slash commands that invoke this system
 - [Installation](installation.md) — getting everything set up

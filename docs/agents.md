@@ -75,6 +75,7 @@ See [Cross-Tool Sync](cross-tool-sync.md) for the field mapping between formats.
 | GitHub (Actions, CI/CD) | `github-planner` | `actions-builder` | — | — | — |
 | Docs (READMEs, PRDs, ADRs) | `docs-planner` | `docs-writer` | `docs-reviewer` | — | — |
 | Brainstorming | `brainstorm-planner` | `brainstorm-synthesizer` | — | — | — |
+| Meta (Agents, Skills, Commands, Plugins) | `meta-planner` | `meta-builder` | `meta-reviewer` | — | `meta-architect` |
 
 ---
 
@@ -124,5 +125,6 @@ See [Cross-Tool Sync](cross-tool-sync.md) for the field mapping between formats.
 ## Related Pages
 
 - [Architecture](architecture.md) — how agents fit into the two-phase model
+- [Meta-Tooling](meta-tooling.md) — using meta agents to extend the ecosystem
 - [Skills](skills.md) — domain knowledge libraries agents reference
 - [Cross-Tool Sync](cross-tool-sync.md) — converting between Claude Code and OpenCode formats

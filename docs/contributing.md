@@ -105,6 +105,7 @@ For agents: test with a real project, verify the agent reads the right files, pr
 
 - [Installation](installation.md) — install and re-install commands
 - [Cross-Tool Sync](cross-tool-sync.md) — sync from live configs back into the repo
+- [Meta-Tooling](meta-tooling.md) — automated alternative to manual config editing
 - [Agents](agents.md) — agent format reference
 - [Commands](commands.md) — command format and patterns
 - [Skills](skills.md) — skill directory structure

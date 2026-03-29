@@ -8,9 +8,9 @@ A version-controlled collection of Claude Code configurations — agents, slash 
 
 ## Repository Structure
 
-- `claude-code/agents/*.md` — 55 agent definitions (YAML frontmatter + system prompt body)
-- `claude-code/commands/*.md` — 53 slash command definitions
-- `claude-code/skills/<name>/` — 12 skill/pattern library directories, each with a `SKILL.md` and optional `data/` or `scripts/`
+- `claude-code/agents/*.md` — 59 agent definitions (YAML frontmatter + system prompt body)
+- `claude-code/commands/*.md` — 56 slash command definitions
+- `claude-code/skills/<name>/` — 13 skill/pattern library directories, each with a `SKILL.md` and optional `data/` or `scripts/`
 - `claude-code/settings.json` / `settings.local.json` — Claude Code settings files
 - `opencode/agents/*.md` — OpenCode agent definitions (converted from Claude Code format)
 - `scripts/install.sh` — Deploys configs for both Claude Code and OpenCode
@@ -61,6 +61,12 @@ scripts/sync.sh --no-convert
 # Preview sync
 scripts/sync.sh --dry-run
 
+# Apply changes without prompting (non-interactive mode)
+scripts/sync.sh --yes
+
+# Auto-resolve conflicts (claude, opencode, or skip)
+scripts/sync.sh --yes --prefer claude
+
 # Convert between formats manually
 scripts/convert.sh --to-opencode    # claude-code/ → opencode/
 scripts/convert.sh --to-claude      # opencode/ → claude-code/
@@ -73,7 +79,7 @@ The orchestrator is `frontal-lobe` (run via `claude --agent frontal-lobe`). It i
 1. **Phase 1 (Plan):** Spawns domain planner agents (e.g., `web-planner`, `ios-planner`) that analyze the codebase and return structured implementation plans
 2. **Phase 2 (Execute):** Spawns implementation agents in parallel (e.g., `web-builder`, `swift-tester`) based on planner output
 
-Agents are organized by role: planners (read-only analysis), architects (read-only design), builders (write code), reviewers (read-only audit), and testers (write tests). Each domain (web, iOS, Python, backend, API, DevOps, data, mobile, GitHub, docs) follows this pattern.
+Agents are organized by role: planners (read-only analysis), architects (read-only design), builders (write code), reviewers (read-only audit), and testers (write tests). Each domain (web, iOS, Python, backend, API, DevOps, data, mobile, GitHub, docs, meta) follows this pattern.
 
 ## Agent File Format
 

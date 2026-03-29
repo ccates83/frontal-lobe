@@ -179,6 +179,14 @@ Most commands follow this structure, acting as orchestrators themselves:
 | `/brainstorm` | Structured ideation: interview → research → synthesize |
 | `/commit` | Commit all pending changes, split into logical commits |
 
+### Meta
+
+| Command | Description |
+|---------|-------------|
+| `/meta-audit` | Audit the agent/skill/command ecosystem for gaps and convention violations |
+| `/meta-new-agent` | Create a new agent definition with full ecosystem integration |
+| `/meta-review` | Review agent/skill/command configs for quality and compliance |
+
 ---
 
 ## Creating a Custom Command

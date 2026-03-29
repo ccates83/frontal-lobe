@@ -51,6 +51,7 @@ description: "iOS architecture patterns, Swift concurrency reference..."
 |-------|-------------|
 | `ios-patterns` | iOS architecture patterns, Swift concurrency, SwiftUI patterns, Apple framework integration |
 | `macos-patterns` | macOS-specific AppKit patterns, sandboxing, distribution workflows, menu bar apps |
+| `meta-patterns` | Claude Code ecosystem configuration patterns — agent definitions, skills, commands, plugins, hooks |
 | `web-patterns` | Component architecture, performance optimization, accessibility, security |
 | `python-patterns` | Python project patterns, Django/FastAPI/Flask conventions |
 | `backend-patterns` | Go/Rust/Java/Kotlin/C# server patterns |
