@@ -1,11 +1,11 @@
 ---
 name: api-patterns
-description: "API design patterns, REST conventions, GraphQL schema design, gRPC service definitions, authentication flows, versioning strategies, and rate limiting. Reference material for api-orchestrator and its sub-agents."
+description: "API design patterns, REST conventions, GraphQL schema design, gRPC service definitions, authentication flows, versioning strategies, and rate limiting. Reference material for api-planner and its sub-agents."
 ---
 
 # API Patterns — Design, Security & Protocol Reference
 
-Quick-reference guide for API design and implementation. Used by the API orchestrator ecosystem.
+Quick-reference guide for API design and implementation. Used by the API planner ecosystem.
 
 ## When to Apply
 

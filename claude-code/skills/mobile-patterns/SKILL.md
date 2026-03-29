@@ -1,11 +1,11 @@
 ---
 name: mobile-patterns
-description: "Cross-platform mobile development patterns for React Native, Expo, and Flutter. Covers navigation, state management, performance optimization, platform-specific code, and testing strategies. Reference material for mobile-orchestrator and its sub-agents."
+description: "Cross-platform mobile development patterns for React Native, Expo, and Flutter. Covers navigation, state management, performance optimization, platform-specific code, and testing strategies. Reference material for mobile-planner and its sub-agents."
 ---
 
 # Mobile Patterns — React Native, Expo & Flutter Reference
 
-Quick-reference guide for cross-platform mobile development. Used by the mobile orchestrator ecosystem.
+Quick-reference guide for cross-platform mobile development. Used by the mobile planner ecosystem.
 
 ## When to Apply
 

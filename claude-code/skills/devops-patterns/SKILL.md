@@ -1,11 +1,11 @@
 ---
 name: devops-patterns
-description: "DevOps and infrastructure patterns: Docker best practices, Kubernetes configurations, Terraform module design, monitoring setup, security hardening, and cloud architecture. Reference material for devops-orchestrator, devops-architect, devops-builder, and devops-reviewer agents."
+description: "DevOps and infrastructure patterns: Docker best practices, Kubernetes configurations, Terraform module design, monitoring setup, security hardening, and cloud architecture. Reference material for devops-planner, devops-architect, devops-builder, and devops-reviewer agents."
 ---
 
 # DevOps Patterns — Infrastructure, Containers & Cloud Reference
 
-Quick-reference guide for infrastructure and operations. Used by the DevOps orchestrator ecosystem.
+Quick-reference guide for infrastructure and operations. Used by the DevOps planner ecosystem.
 
 ## When to Apply
 

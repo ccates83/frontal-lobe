@@ -5,7 +5,7 @@ description: "iOS architecture patterns, Swift concurrency reference, SwiftUI pa
 
 # iOS Patterns — Architecture & Implementation Reference
 
-Quick-reference guide for iOS development patterns. Used by the iOS orchestrator ecosystem to make informed architecture and implementation decisions.
+Quick-reference guide for iOS development patterns. Used by the iOS planner ecosystem to make informed architecture and implementation decisions.
 
 ## When to Apply
 

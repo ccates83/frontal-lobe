@@ -1,11 +1,11 @@
 ---
 name: python-patterns
-description: "Python development patterns, Django/FastAPI conventions, async patterns, type system usage, testing strategies, and package management. Reference material for python-orchestrator, python-architect, python-builder, python-reviewer, and python-tester agents."
+description: "Python development patterns, Django/FastAPI conventions, async patterns, type system usage, testing strategies, and package management. Reference material for python-planner, python-architect, python-builder, python-reviewer, and python-tester agents."
 ---
 
 # Python Patterns — Architecture, Framework & Testing Reference
 
-Quick-reference guide for modern Python development. Used by the Python orchestrator ecosystem.
+Quick-reference guide for modern Python development. Used by the Python planner ecosystem.
 
 ## When to Apply
 

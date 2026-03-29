@@ -1,11 +1,11 @@
 ---
 name: web-patterns
-description: "Modern web development patterns, component architecture, performance optimization, accessibility standards, and security best practices. Reference material for web-orchestrator, web-architect, web-builder, web-reviewer, and web-tester agents."
+description: "Modern web development patterns, component architecture, performance optimization, accessibility standards, and security best practices. Reference material for web-planner, web-architect, web-builder, web-reviewer, and web-tester agents."
 ---
 
 # Web Patterns — Architecture, Performance & Accessibility Reference
 
-Quick-reference guide for modern web development. Used by the web orchestrator ecosystem to produce consistent, high-quality web applications.
+Quick-reference guide for modern web development. Used by the web planner ecosystem to produce consistent, high-quality web applications.
 
 ## When to Apply
 

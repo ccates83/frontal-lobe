@@ -5,7 +5,7 @@ description: "Claude Code ecosystem configuration patterns — agent definitions
 
 # Meta Patterns — Ecosystem Configuration Reference
 
-Quick-reference guide for creating and auditing Claude Code configuration artifacts. Used by the meta orchestrator ecosystem to produce consistent, convention-compliant agents, skills, commands, plugins, and hooks.
+Quick-reference guide for creating and auditing Claude Code configuration artifacts. Used by the meta planner ecosystem to produce consistent, convention-compliant agents, skills, commands, plugins, and hooks.
 
 ## When to Apply
 

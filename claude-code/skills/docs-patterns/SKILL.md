@@ -5,7 +5,7 @@ description: "Technical documentation patterns, templates, and best practices. R
 
 # Documentation Patterns — Writing & Structure Reference
 
-Quick-reference guide for technical documentation. Used by the docs orchestrator ecosystem to produce consistent, high-quality documentation.
+Quick-reference guide for technical documentation. Used by the docs planner ecosystem to produce consistent, high-quality documentation.
 
 ## When to Apply
 
