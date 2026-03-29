@@ -121,6 +121,7 @@ For **trivial tasks** where the domain, files, and changes are obvious (e.g., "c
 | GitHub / Actions / CI/CD | `github-planner` | CI/CD planning |
 | Docs / READMEs / PRDs / ADRs | `docs-planner` | Documentation planning |
 | Brainstorming / Ideation | `brainstorm-planner` | Idea exploration |
+| Meta / Agents / Skills / Commands / Plugins | `meta-planner` | Agent ecosystem tooling |
 
 ### Implementation Agents (Phase 2 — do the actual work)
 
@@ -148,6 +149,9 @@ For **trivial tasks** where the domain, files, and changes are obvious (e.g., "c
 | `gh-cli-operator` | Executes gh CLI commands |
 | `spm-manager` | Manages Swift packages |
 | `pbxproj-surgeon` | Modifies Xcode project files |
+| `meta-builder` | Creates/modifies agent, skill, command, plugin, hook configs |
+| `meta-reviewer` | Reviews config quality, consistency (read-only) |
+| `meta-architect` | Designs ecosystem extensions (read-only) |
 
 ### Routing Heuristics
 
@@ -156,6 +160,7 @@ For **trivial tasks** where the domain, files, and changes are obvious (e.g., "c
 - **Python vs Web**: Django/FastAPI → `python-planner`; Express/Node → `web-planner`
 - **Backend**: Go/Rust/Java/Kotlin/C# → `backend-planner`
 - **Cross-domain**: Spawn multiple planners in parallel.
+- **Meta**: Creating/modifying agents, skills, commands, plugins, hooks → `meta-planner`
 
 ## Delegation Prompt Guidelines
 
