@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcrun simctl:*)",
+      "Bash(du -sh ~/Library/Caches/*)",
+      "Bash(sudo tmutil:*)",
+      "Bash(tmutil listlocalsnapshots:*)"
+    ]
+  }
+}
