@@ -1,0 +1,44 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // Default model for primary agents
+  "model": "anthropic/claude-sonnet-4-5",
+  // Small model for utility tasks
+  "small_model": "anthropic/claude-haiku-4-5",
+  // Provider configuration
+  "provider": {
+    "anthropic": {
+      "options": {
+        "timeout": 600000,
+        "chunkTimeout": 30000
+      }
+    }
+  },
+  // Default agent
+  "default_agent": "frontal-lobe",
+  // Global permissions
+  "permission": {
+    "edit": "ask",
+    "bash": {
+      "*": "ask",
+      "xcrun simctl *": "allow",
+      "du -sh ~/Library/Caches/*": "allow",
+      "sudo tmutil *": "allow",
+      "tmutil listlocalsnapshots *": "allow",
+      "git *": "allow",
+      "grep *": "allow",
+      "find *": "allow",
+      "cat *": "allow",
+      "ls *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "wc *": "allow"
+    },
+    "webfetch": "ask"
+  },
+  // Instructions (equivalent to CLAUDE.md references)
+  "instructions": ["AGENTS.md"],
+  // Watcher ignore patterns
+  "watcher": {
+    "ignore": ["node_modules/**", "dist/**", ".build/**", "DerivedData/**"]
+  }
+}
