@@ -12,26 +12,58 @@ A version-controlled collection of Claude Code configurations — agents, slash 
 - `claude-code/commands/*.md` — 53 slash command definitions
 - `claude-code/skills/<name>/` — 12 skill/pattern library directories, each with a `SKILL.md` and optional `data/` or `scripts/`
 - `claude-code/settings.json` / `settings.local.json` — Claude Code settings files
-- `scripts/install.sh` — Symlinks `claude-code/` contents into `~/.claude/` (or a project's `.claude/`)
-- `scripts/sync.sh` — Pulls changes from `~/.claude/` back into the repo
+- `opencode/agents/*.md` — OpenCode agent definitions (converted from Claude Code format)
+- `scripts/install.sh` — Deploys configs for both Claude Code and OpenCode
+- `scripts/sync.sh` — Pulls changes from either tool back into the repo and cross-converts
+- `scripts/convert.sh` — Translates agent definitions between Claude Code and OpenCode formats
+
+## Cross-Tool Sync
+
+This repo maintains configs for both Claude Code and OpenCode in parallel.
+
+- `claude-code/` is the authoritative config set for Claude Code; it deploys to `~/.claude/`
+- `opencode/` is the authoritative config set for OpenCode; it deploys to the OpenCode config directory
+- The unified `scripts/install.sh` deploys both to their respective config directories in one step
+- The unified `scripts/sync.sh` pulls changes from either tool and cross-converts so both sets stay in sync
+- `scripts/convert.sh` handles format translation — frontmatter field differences, path references, and tool lists
+- Editing in either tool is fine; running `scripts/sync.sh` propagates changes to the other
 
 ## Key Commands
 
 ```bash
-# Install configs (root-level, symlinks into ~/.claude/)
+# Install all configs (both Claude Code + OpenCode, root-level)
 scripts/install.sh
 
-# Install configs (project-level, symlinks into <project>/.claude/)
+# Install Claude Code only
+scripts/install.sh --claude
+
+# Install OpenCode only
+scripts/install.sh --opencode
+
+# Install to a specific project
 scripts/install.sh --project /path/to/project
 
 # Preview install without making changes
 scripts/install.sh --dry-run
 
-# Sync local ~/.claude/ changes back into repo
+# Sync local changes back to repo (both tools + cross-convert)
 scripts/sync.sh
 
-# Preview sync without applying
+# Sync Claude Code only
+scripts/sync.sh --claude
+
+# Sync OpenCode only
+scripts/sync.sh --opencode
+
+# Sync without cross-conversion
+scripts/sync.sh --no-convert
+
+# Preview sync
 scripts/sync.sh --dry-run
+
+# Convert between formats manually
+scripts/convert.sh --to-opencode    # claude-code/ → opencode/
+scripts/convert.sh --to-claude      # opencode/ → claude-code/
 ```
 
 ## Agent Architecture
