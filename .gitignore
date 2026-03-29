@@ -1,0 +1,37 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Python bytecode (used in skills/ui-ux-pro-max/scripts/)
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Claude Code ephemeral (excluded from sync)
+# These exist in ~/.claude/ but should never be committed
+claude-code/cache/
+claude-code/telemetry/
+claude-code/sessions/
+claude-code/paste-cache/
+claude-code/shell-snapshots/
+claude-code/session-env/
+claude-code/file-history/
+claude-code/backups/
+claude-code/tasks/
+claude-code/plans/
+claude-code/todos/
+claude-code/statsig/
+claude-code/agent-memory/
+claude-code/history.jsonl
+claude-code/projects/
+claude-code/plugins/cache/
+claude-code/plugins/data/
+claude-code/plugins/marketplaces/
+claude-code/plugins/repos/
