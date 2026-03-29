@@ -117,6 +117,15 @@ final class AppCoordinator {
 }
 ```
 
+### File Structure Conventions
+
+- Group behavior by capability in separate extension files: `Type+Capability.swift` (e.g., `ViewModel+ScrollState.swift`, `Feature+Filter.swift`)
+- One main concern per extension file
+- Use a hyphen for MARK section headers: `// MARK: - Security`, `// MARK: Private Methods`
+- Group private implementation in a `private extension` on the same type
+- When a type is only used in one context, define it inside that type's extension or namespace (nested types)
+- Match the project's existing file and type naming conventions (prefixes, module boundaries, etc.)
+
 ---
 
 ## 2. Swift Concurrency Patterns
@@ -321,6 +330,50 @@ struct URLSessionAPIClient: APIClient {
 }
 ```
 
+### Domain Error Mapping
+
+Map low-level or network errors to domain errors inside the layer that owns the call. Present a simple, user-friendly message (or localization key) in the UI.
+
+```swift
+// Domain error enum
+enum ProfileError: Error, LocalizedError {
+    case notFound
+    case networkUnavailable
+    case serverError(statusCode: Int)
+
+    var errorDescription: String? {
+        switch self {
+        case .notFound: String(localized: "profile.error.notFound")
+        case .networkUnavailable: String(localized: "profile.error.offline")
+        case .serverError: String(localized: "profile.error.server")
+        }
+    }
+}
+
+// Map at the repository layer
+struct ProfileRepository {
+    private let api: APIClient
+
+    /// Fetches the user profile.
+    /// - Throws: `ProfileError` for all failure cases.
+    func fetchProfile(id: String) async throws(ProfileError) -> User {
+        do {
+            return try await api.request(.profile(id))
+        } catch let error as APIError {
+            switch error {
+            case .httpError(404, _): throw .notFound
+            case .httpError(let code, _): throw .serverError(statusCode: code)
+            default: throw .networkUnavailable
+            }
+        } catch {
+            throw .networkUnavailable
+        }
+    }
+}
+```
+
+Document thrown errors in doc comments (`/// - Throws:`) so callers know the contract.
+
 ---
 
 ## 6. Testing Patterns
@@ -393,3 +446,124 @@ func fetchProfile() async throws {
 - [ ] Extensions stay under memory limits
 - [ ] Network requests are cancellable and cancelled on disappear
 - [ ] Animations use transform/opacity, not layout changes
+
+---
+
+## 9. Documentation Style
+
+### Public API
+- Add `///` doc comments for all public types, properties, and methods
+- For non-trivial behavior use multiple lines; explain side effects or when something runs (e.g., "automatically when the property is set via its `didSet`")
+
+### Parameters / Returns / Note
+- Use `- Parameter name:`, `- Returns:`, `- Note: ...` where they clarify contract or usage
+
+```swift
+/// Fetches the user profile from the remote service.
+///
+/// - Parameter id: The unique identifier for the user.
+/// - Returns: The populated `UserProfile`, or throws if the network is unreachable.
+/// - Note: Automatically retries once on timeout before throwing.
+func fetchProfile(id: String) async throws -> UserProfile
+```
+
+### Inline Comments
+- Use for non-obvious logic; explain *why* or workarounds
+- If code is temporary or a workaround, say so
+
+### TODOs
+- Use ticket/ID + condition so work is traceable:
+  `// TODO: (TICKET-123) Remove once feature X is shipped.`
+
+---
+
+## 10. Accessibility
+
+- Add `accessibilityLabel` (and `accessibilityHint` when helpful) for interactive elements and meaningful images; avoid redundant labels
+- Support Dynamic Type: use semantic text styles (`.body`, `.headline`) or scale with the environment; avoid fixed font sizes for body text
+- Respect `accessibilityReduceMotion` — disable or simplify non-essential animations when it is enabled
+- Use `accessibilityIdentifier` for UI tests; keep identifiers stable and consistent with the project's naming convention
+
+```swift
+// Dynamic Type support
+Text("Welcome")
+    .font(.headline)  // ✅ Scales with system settings
+
+Text("Welcome")
+    .font(.system(size: 18))  // ❌ Fixed size, won't scale
+
+// Reduce motion
+@Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+withAnimation(reduceMotion ? nil : .spring()) {
+    showContent = true
+}
+
+// Test identifiers
+Button("Submit") { submit() }
+    .accessibilityIdentifier("submitButton")
+```
+
+---
+
+## 11. Localization
+
+- Do not hardcode user-facing strings in Swift; use the project's localization mechanism (e.g., `String(localized:)`, `NSLocalizedString`, or a generated `L10n`/enum API)
+- Keep keys or enum cases consistent with the project's existing naming
+- Use placeholder comments or parameterized strings for dynamic text; avoid string concatenation for sentences
+
+```swift
+// ✅ Correct
+Text(String(localized: "welcome.greeting \(userName)"))
+
+// ❌ Avoid — breaks localization for RTL and grammatically different languages
+Text("Hello, " + userName + "! You have " + "\(count)" + " items.")
+```
+
+---
+
+## 12. Logging & Diagnostics
+
+- Use the project's logging API (e.g., `os.Logger`, `OSLog`) instead of `print` for diagnostics
+- Log at an appropriate level (`debug` for development, `error` for failures, `info` for significant events)
+- Prefer structured or clearly formatted messages so logs are searchable and actionable
+- Never log PII (emails, user IDs, tokens) or secrets
+
+```swift
+import os
+
+extension Logger {
+    static let networking = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Networking")
+}
+
+// ✅ Structured logging with levels
+Logger.networking.debug("Request started: \(endpoint, privacy: .public)")
+Logger.networking.error("Request failed: \(error.localizedDescription, privacy: .public)")
+
+// ❌ Avoid
+print("request started")  // Not filterable, ships in production
+Logger.networking.info("User email: \(user.email)")  // PII leak
+```
+
+---
+
+## 13. Privacy & Security
+
+- Do not commit secrets, API keys, or tokens; use the project's config (e.g., xcconfig files, environment variables, keychain) and never log them
+- Store credentials and sensitive data in the Keychain (or project-approved secure storage); do not use `UserDefaults` or plists for secrets
+- Do not log PII (e.g., emails, IDs, tokens); redact or omit in log messages and analytics
+- Use `privacy: .private` in OSLog for any potentially sensitive values
+
+```swift
+// ✅ Secrets via xcconfig / build settings
+let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
+
+// ✅ Keychain for credentials
+try KeychainManager.save(token, forKey: "authToken")
+
+// ❌ Never store secrets in UserDefaults
+UserDefaults.standard.set(authToken, forKey: "token")
+
+// ✅ Redact sensitive values in logs
+Logger.auth.debug("Token refreshed for user: \(userId, privacy: .private)")
+```
