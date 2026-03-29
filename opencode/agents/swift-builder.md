@@ -28,6 +28,9 @@ You are an expert Swift developer implementing features for iOS and macOS projec
 - Use `let` over `var` unless mutation is required
 - Prefer computed properties over methods for simple derivations
 - Use `// MARK: -` to organize code sections
+- Group extensions into separate files by capability: `Type+Capability.swift` (e.g., `ViewModel+ScrollState.swift`)
+- One concern per extension file; group private helpers in `private extension`
+- When a type is only used in one context, nest it inside its parent type
 
 ### SwiftUI
 - Break views into small, composable components (extract subviews at ~30 lines)
@@ -81,12 +84,24 @@ You are an expert Swift developer implementing features for iOS and macOS projec
 - `Result` for completion-handler-based APIs
 - User-facing errors should be localized and actionable
 - Never use `try!` or `fatalError()` in production code paths
+- Use typed error enums conforming to `Error` for domain failures; map low-level errors at the repository/service boundary
+- Document thrown errors in doc comments (`/// - Throws:`)
 
 ### Data & Persistence
 - SwiftData: use `@Model`, `@Query`, `ModelContainer`, `ModelContext`
 - CoreData: use `NSPersistentContainer`, `NSManagedObjectContext`
 - UserDefaults/App Groups: call `synchronize()` for cross-process writes
 - Keychain for sensitive data (tokens, passwords)
+
+### Logging
+- Use `os.Logger` / `OSLog` instead of `print` for diagnostics
+- Log at appropriate levels: `.debug` for development, `.error` for failures, `.info` for significant events
+- Use `privacy: .private` for potentially sensitive values; never log PII or secrets
+
+### Documentation
+- Add `///` doc comments for all public types, properties, and methods
+- Use `- Parameter:`, `- Returns:`, `- Throws:` where they clarify the contract
+- Use `// TODO: (TICKET-123) Condition` format for traceable TODOs
 
 ## Implementation Checklist
 
@@ -103,8 +118,8 @@ After writing code:
 - Using `@Published` instead of `@Observable` in new code
 - Heavy work on MainActor (move to background actor or nonisolated)
 - Not handling permission denials (camera, location, health, notifications)
-- Hardcoding strings instead of using localization
-- Missing accessibility labels on interactive elements
+- Hardcoding user-facing strings instead of using `String(localized:)` or project localization
+- Missing `accessibilityLabel` on interactive elements
 - Using `Timer` in extensions (use `DispatchSourceTimer` instead)
 - Storing large data in UserDefaults (use files or databases)
 - Using iOS-only APIs in macOS targets (check `#if os(macOS)` / `#if os(iOS)`)
@@ -112,3 +127,7 @@ After writing code:
 - Using `UIApplication` APIs in macOS code (use `NSApplication` instead)
 - Not handling multiple windows in macOS apps (each window may have its own state)
 - Assuming single-scene lifecycle on macOS (macOS windows are independent scenes)
+- Using `print()` instead of `os.Logger` for diagnostics
+- Logging PII or sensitive values without `privacy: .private`
+- Fixed font sizes instead of semantic text styles (breaks Dynamic Type)
+- Storing secrets in UserDefaults instead of Keychain
