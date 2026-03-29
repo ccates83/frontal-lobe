@@ -37,6 +37,8 @@ DRY_RUN=false
 SYNC_CLAUDE=false
 SYNC_OPENCODE=false
 NO_CONVERT=false
+YES=false
+PREFER=""
 
 CLAUDE_SOURCE="${HOME}/.claude"
 OPENCODE_SOURCE="${HOME}/.config/opencode"
@@ -98,6 +100,9 @@ ${BOLD}OPTIONS${RESET}
     --opencode    Sync OpenCode only (+ convert to Claude Code).
     --no-convert  Sync without cross-conversion.
     --dry-run     Show what would change without applying anything.
+    --yes, -y     Apply changes without prompting for confirmation.
+    --prefer X    Auto-resolve conflicts (X = claude, opencode, or skip).
+                  Implies --yes.
     --help        Show this help message and exit.
 
     Default (no flags): sync both tools and cross-convert.
@@ -127,20 +132,39 @@ EOF
 # ---------------------------------------------------------------------------
 # Argument parsing
 # ---------------------------------------------------------------------------
-for arg in "$@"; do
-    case "$arg" in
+while (( $# > 0 )); do
+    case "$1" in
         --claude)     SYNC_CLAUDE=true ;;
         --opencode)   SYNC_OPENCODE=true ;;
         --no-convert) NO_CONVERT=true ;;
         --dry-run)    DRY_RUN=true ;;
+        --yes|-y)     YES=true ;;
+        --prefer)
+            shift
+            case "${1:-}" in
+                claude|opencode|skip)
+                    PREFER="$1"
+                    ;;
+                *)
+                    error "--prefer requires: claude, opencode, or skip"
+                    exit 1
+                    ;;
+            esac
+            ;;
         --help|-h)    usage ;;
         *)
-            error "Unknown option: $arg"
+            error "Unknown option: $1"
             printf "Run with --help for usage.\n" >&2
             exit 1
             ;;
     esac
+    shift
 done
+
+# --prefer implies --yes
+if [[ -n "$PREFER" ]]; then
+    YES=true
+fi
 
 # Default: sync both if neither specified
 if ! $SYNC_CLAUDE && ! $SYNC_OPENCODE; then
@@ -184,6 +208,12 @@ else
 fi
 if $DRY_RUN; then
     warn "Dry-run mode -- no changes will be applied."
+fi
+if $YES; then
+    info "Auto-apply:    enabled (--yes)"
+fi
+if [[ -n "$PREFER" ]]; then
+    info "Prefer:        ${PREFER} (--prefer)"
 fi
 
 # ---------------------------------------------------------------------------
@@ -491,11 +521,19 @@ fi
 # ---------------------------------------------------------------------------
 # Prompt for confirmation
 # ---------------------------------------------------------------------------
-printf "\nApply %d changes? [y/N] " "$total"
-read -r answer
-if [[ ! "$answer" =~ ^[Yy]$ ]]; then
-    info "Aborted. No changes were made."
-    exit 0
+# If stdin is not a terminal and --yes wasn't passed, abort gracefully
+if ! $YES && ! [[ -t 0 ]]; then
+    warn "Non-interactive mode detected. Use --yes to auto-apply or --dry-run to preview."
+    exit 1
+fi
+
+if ! $YES; then
+    printf "\nApply %d changes? [y/N] " "$total"
+    read -r answer
+    if [[ ! "$answer" =~ ^[Yy]$ ]]; then
+        info "Aborted. No changes were made."
+        exit 0
+    fi
 fi
 
 # ---------------------------------------------------------------------------
@@ -504,6 +542,12 @@ fi
 # Returns: "claude", "opencode", or "skip"
 resolve_conflict() {
     local file="$1"
+
+    # If --prefer was specified, use it automatically
+    if [[ -n "$PREFER" ]]; then
+        echo "$PREFER"
+        return
+    fi
 
     # If user already chose "apply to all", use that
     if [[ -n "$conflict_resolve_all" ]]; then
