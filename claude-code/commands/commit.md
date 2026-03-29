@@ -1,3 +1,7 @@
+---
+description: "Commit pending changes, splitting into logical commits by concern"
+---
+
 Commit all pending changes on the current branch, splitting into multiple well-structured commits when the changes span distinct concerns.
 
 Instructions:

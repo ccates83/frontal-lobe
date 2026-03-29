@@ -126,7 +126,6 @@ For **trivial tasks** where the domain, files, and changes are obvious (e.g., "c
 |-------|-------------|
 | `web-builder` | Implements JS/TS, React, CSS, API routes |
 | `web-tester` | Writes web tests (Vitest, Jest, Playwright) |
-| `web-reviewer` | Reviews web code (read-only) |
 | `python-builder` | Implements Python code |
 | `python-tester` | Writes pytest tests |
 | `swift-builder` | Implements Swift/SwiftUI/UIKit/AppKit code |
@@ -147,8 +146,32 @@ For **trivial tasks** where the domain, files, and changes are obvious (e.g., "c
 | `spm-manager` | Manages Swift packages |
 | `pbxproj-surgeon` | Modifies Xcode project files |
 | `meta-builder` | Creates/modifies agent, skill, command, plugin, hook configs |
-| `meta-reviewer` | Reviews config quality, consistency (read-only) |
-| `meta-architect` | Designs ecosystem extensions (read-only) |
+
+### Reviewers & Architects (read-only analysis agents)
+
+These are typically invoked via domain planners, but may be spawned directly for standalone review or architecture tasks.
+
+| Agent | What it does |
+|-------|-------------|
+| `web-architect` | Designs web application architecture |
+| `web-reviewer` | Reviews web code for bugs, performance, a11y |
+| `python-architect` | Designs Python application architecture |
+| `python-reviewer` | Reviews Python code for bugs, types, security |
+| `swift-architect` | Designs iOS/macOS Swift architecture |
+| `swift-reviewer` | Reviews Swift/SwiftUI/UIKit code |
+| `backend-architect` | Designs Go/Rust/Java/Kotlin/C# architecture |
+| `backend-reviewer` | Reviews compiled backend code |
+| `api-architect` | Designs API architecture and schemas |
+| `api-reviewer` | Reviews API consistency, security, performance |
+| `devops-architect` | Designs infrastructure architecture |
+| `devops-reviewer` | Reviews IaC for security, cost, reliability |
+| `data-architect` | Designs database schemas and data models |
+| `data-reviewer` | Reviews schemas, queries, migrations |
+| `mobile-architect` | Designs cross-platform mobile architecture |
+| `mobile-reviewer` | Reviews React Native/Flutter code |
+| `docs-reviewer` | Reviews documentation quality and accuracy |
+| `meta-architect` | Designs agent ecosystem extensions |
+| `meta-reviewer` | Reviews agent/skill/command config quality |
 
 ### Routing Heuristics
 
@@ -158,6 +181,7 @@ For **trivial tasks** where the domain, files, and changes are obvious (e.g., "c
 - **Backend**: Go/Rust/Java/Kotlin/C# → `backend-planner`
 - **Cross-domain**: Spawn multiple planners in parallel.
 - **Meta**: Creating/modifying agents, skills, commands, plugins, hooks → `meta-planner`
+- **Standalone review or architecture**: review/audit/architecture task → spawn reviewer/architect directly, skip Phase 1 planning.
 
 ## Delegation Prompt Guidelines
 

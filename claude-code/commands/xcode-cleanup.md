@@ -1,3 +1,8 @@
+---
+description: "Remove Swift source files from Xcode project (filesystem + pbxproj)"
+argument-hint: "Space-separated file or directory paths to remove"
+---
+
 # Xcode Project Cleanup
 
 Remove source files from an iOS/macOS Xcode project safely — handling both the filesystem and the `project.pbxproj` references.
