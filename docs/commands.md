@@ -141,6 +141,7 @@ Most commands follow this structure, acting as orchestrators themselves:
 | `/data-model` | Design or revise a data model |
 | `/data-migrate` | Plan and write a database migration |
 | `/data-review` | Review schema, queries, and migrations |
+| `/data-test` | Run database and data pipeline tests |
 
 ### Mobile
 
@@ -178,6 +179,7 @@ Most commands follow this structure, acting as orchestrators themselves:
 |---------|-------------|
 | `/brainstorm` | Structured ideation: interview → research → synthesize |
 | `/commit` | Commit all pending changes, split into logical commits |
+| `/list-tools` | List all available agents, skills, commands, and plugins |
 
 ### Meta
 

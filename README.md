@@ -2,7 +2,7 @@
 
 **Version-controlled agents, commands, and skills for Claude Code and OpenCode.**
 
-A shareable configuration toolkit — 59 specialized agents, 56 slash commands, and 13 skill/pattern libraries — that supercharges AI-assisted development across every major stack. Works with both [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) and [OpenCode](https://opencode.ai).
+A shareable configuration toolkit — 61 specialized agents, 61 slash commands, and 13 skill/pattern libraries — that supercharges AI-assisted development across every major stack. Works with both [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) and [OpenCode](https://opencode.ai).
 
 ---
 
@@ -37,8 +37,8 @@ opencode
 
 ## What's Included
 
-- **59 agents** — Domain planners, builders, reviewers, testers, and architects plus the `frontal-lobe` orchestrator that coordinates them all
-- **56 slash commands** — Focused workflows for building, testing, reviewing, releasing, and documenting across every domain
+- **61 agents** — Domain planners, builders, reviewers, testers, and architects plus the `frontal-lobe` orchestrator that coordinates them all
+- **61 slash commands** — Focused workflows for building, testing, reviewing, releasing, and documenting across every domain
 - **13 skill libraries** — Reference material (patterns, conventions, best practices) that agents draw on automatically; includes `ui-ux-pro-max` with 67 design styles and 96 color palettes
 
 ---
@@ -127,7 +127,7 @@ See [docs/cross-tool-sync.md](docs/cross-tool-sync.md) for details on the sync a
 - [docs/architecture.md](docs/architecture.md) — Orchestrator design, two-phase execution model, agent isolation
 - [docs/agents.md](docs/agents.md) — Full agent matrix with roles and tool permissions
 - [docs/meta-tooling.md](docs/meta-tooling.md) — Meta agents for extending and auditing the ecosystem
-- [docs/commands.md](docs/commands.md) — All 56 slash commands with descriptions
+- [docs/commands.md](docs/commands.md) — All 61 slash commands with descriptions
 - [docs/skills.md](docs/skills.md) — Skill library reference
 - [docs/installation.md](docs/installation.md) — Installation details, conflict handling, dry-run
 - [docs/cross-tool-sync.md](docs/cross-tool-sync.md) — Cross-tool sync and format conversion

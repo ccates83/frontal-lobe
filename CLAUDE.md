@@ -8,8 +8,8 @@ A version-controlled collection of Claude Code configurations — agents, slash 
 
 ## Repository Structure
 
-- `claude-code/agents/*.md` — 59 agent definitions (YAML frontmatter + system prompt body)
-- `claude-code/commands/*.md` — 56 slash command definitions
+- `claude-code/agents/*.md` — 61 agent definitions (YAML frontmatter + system prompt body)
+- `claude-code/commands/*.md` — 61 slash command definitions
 - `claude-code/skills/<name>/` — 13 skill/pattern library directories, each with a `SKILL.md` and optional `data/` or `scripts/`
 - `claude-code/settings.json` / `settings.local.json` — Claude Code settings files
 - `opencode/agents/*.md` — OpenCode agent definitions (converted from Claude Code format)

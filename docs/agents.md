@@ -69,8 +69,8 @@ See [Cross-Tool Sync](cross-tool-sync.md) for the field mapping between formats.
 | macOS (AppKit, SwiftUI-for-Mac) | `macos-planner` | `swift-builder` | `swift-reviewer` | `swift-tester` | `swift-architect` |
 | Backend (Go, Rust, Java, Kotlin, C#) | `backend-planner` | `backend-builder` | `backend-reviewer` | `backend-tester` | `backend-architect` |
 | API (REST, GraphQL, gRPC) | `api-planner` | `api-builder` | `api-reviewer` | `api-tester` | `api-architect` |
-| DevOps (Docker, K8s, Terraform) | `devops-planner` | `devops-builder` | `devops-reviewer` | — | `devops-architect` |
-| Data (SQL, Migrations, Redis) | `data-planner` | `data-builder` | `data-reviewer` | — | `data-architect` |
+| DevOps (Docker, K8s, Terraform) | `devops-planner` | `devops-builder` | `devops-reviewer` | `devops-tester` | `devops-architect` |
+| Data (SQL, Migrations, Redis) | `data-planner` | `data-builder` | `data-reviewer` | `data-tester` | `data-architect` |
 | Mobile (React Native, Flutter) | `mobile-planner` | `mobile-builder` | `mobile-reviewer` | `mobile-tester` | `mobile-architect` |
 | GitHub (Actions, CI/CD) | `github-planner` | `actions-builder` | — | — | — |
 | Docs (READMEs, PRDs, ADRs) | `docs-planner` | `docs-writer` | `docs-reviewer` | — | — |
@@ -100,7 +100,7 @@ See [Cross-Tool Sync](cross-tool-sync.md) for the field mapping between formats.
 |-------|---------|
 | `opus` | Builders and planners — tasks that require writing code or deep analysis |
 | `sonnet` | Architects and reviewers — read-only reasoning tasks |
-| `haiku` | Fast utility agents (none currently, reserved for future lightweight tasks) |
+| `haiku` | Fast utility agents — `xcode-builder` |
 
 ---
 

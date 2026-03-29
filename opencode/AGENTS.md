@@ -9,9 +9,9 @@ A version-controlled collection of OpenCode agent definitions — converted from
 ## Repository Structure
 
 - `opencode/agents/*.md` — OpenCode agent definitions (YAML frontmatter + system prompt body)
-- `claude-code/agents/*.md` — Source Claude Code agent definitions (55 total)
-- `claude-code/commands/*.md` — 53 slash command definitions (Claude Code only)
-- `claude-code/skills/<name>/` — 12 skill/pattern library directories (Claude Code only)
+- `claude-code/agents/*.md` — Source Claude Code agent definitions (61 total)
+- `claude-code/commands/*.md` — 61 slash command definitions (Claude Code only)
+- `claude-code/skills/<name>/` — 13 skill/pattern library directories (Claude Code only)
 - `scripts/install.sh` — Deploys configs for both Claude Code and OpenCode
 - `scripts/sync.sh` — Pulls changes from either tool back into the repo and cross-converts
 - `scripts/convert.sh` — Translates agent definitions between Claude Code and OpenCode formats
