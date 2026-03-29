@@ -179,21 +179,21 @@ resolve_conflict() {
         return
     fi
 
-    warn "Conflict: ${target} already exists"
+    warn "Conflict: ${target} already exists" >&2
     if [[ -L "$target" ]]; then
         local current_link
         current_link="$(readlink "$target")"
-        warn "  Current symlink → ${current_link}"
+        warn "  Current symlink → ${current_link}" >&2
     elif [[ -d "$target" ]]; then
-        warn "  Existing directory"
+        warn "  Existing directory" >&2
     else
-        warn "  Existing file"
+        warn "  Existing file" >&2
     fi
-    warn "  Desired link   → ${source}"
-    printf "\n  Choose: [b]ackup  [o]verwrite  [s]kip  |  [B]ackup all  [O]verwrite all  [S]kip all\n  > "
+    warn "  Desired link   → ${source}" >&2
+    printf "\n  Choose: [b]ackup  [o]verwrite  [s]kip  |  [B]ackup all  [O]verwrite all  [S]kip all\n  > " >&2
 
     local choice
-    read -r choice
+    read -r choice < /dev/tty
     case "$choice" in
         b) echo "backup" ;;
         o) echo "overwrite" ;;
@@ -202,7 +202,7 @@ resolve_conflict() {
         O) APPLY_ALL="overwrite"; echo "overwrite" ;;
         S) APPLY_ALL="skip";      echo "skip" ;;
         *)
-            warn "Invalid choice, skipping."
+            warn "Invalid choice, skipping." >&2
             echo "skip"
             ;;
     esac
