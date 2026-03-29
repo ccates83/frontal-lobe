@@ -1,11 +1,11 @@
 ---
 name: backend-patterns
-description: "Backend development patterns for Go, Rust, Java/Kotlin, and C#. Covers concurrency, error handling, project structure, testing, and framework-specific conventions. Reference material for backend-orchestrator and its sub-agents."
+description: "Backend development patterns for Go, Rust, Java/Kotlin, and C#. Covers concurrency, error handling, project structure, testing, and framework-specific conventions. Reference material for backend-planner and its sub-agents."
 compatibility: opencode
 ---
 # Backend Patterns — Go, Rust, Java/Kotlin & C# Reference
 
-Quick-reference guide for compiled-language backend development. Used by the backend orchestrator ecosystem.
+Quick-reference guide for compiled-language backend development. Used by the backend planner ecosystem.
 
 ## When to Apply
 

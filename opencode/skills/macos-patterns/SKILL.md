@@ -5,7 +5,7 @@ compatibility: opencode
 ---
 # macOS Patterns — Architecture & Implementation Reference
 
-Quick-reference guide for macOS development patterns. Used by the macOS orchestrator ecosystem to make informed architecture and implementation decisions.
+Quick-reference guide for macOS development patterns. Used by the macOS planner ecosystem to make informed architecture and implementation decisions.
 
 ## When to Apply
 

@@ -1,5 +1,5 @@
 ---
-description: "# Xcode Project Cleanup"
+description: "Remove Swift source files from Xcode project (filesystem + pbxproj)"
 agent: build
 ---
 # Xcode Project Cleanup

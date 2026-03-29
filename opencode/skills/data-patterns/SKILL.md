@@ -1,11 +1,11 @@
 ---
 name: data-patterns
-description: "Database design patterns, SQL optimization, migration strategies, caching patterns, and data pipeline conventions. Reference material for data-orchestrator, data-architect, data-builder, and data-reviewer agents."
+description: "Database design patterns, SQL optimization, migration strategies, caching patterns, and data pipeline conventions. Reference material for data-planner, data-architect, data-builder, and data-reviewer agents."
 compatibility: opencode
 ---
 # Data Patterns — Schema Design, Query Optimization & Pipeline Reference
 
-Quick-reference guide for data engineering. Used by the data orchestrator ecosystem.
+Quick-reference guide for data engineering. Used by the data planner ecosystem.
 
 ## When to Apply
 

@@ -1,11 +1,11 @@
 ---
 name: github-actions-patterns
-description: "GitHub Actions workflow syntax reference, common CI/CD patterns, caching strategies, matrix configurations, security best practices, OIDC integration, reusable workflows, and composite actions. Reference material for actions-builder, actions-debugger, and github-orchestrator agents."
+description: "GitHub Actions workflow syntax reference, common CI/CD patterns, caching strategies, matrix configurations, security best practices, OIDC integration, reusable workflows, and composite actions. Reference material for actions-builder, actions-debugger, and github-planner agents."
 compatibility: opencode
 ---
 # GitHub Actions Patterns — CI/CD Reference
 
-Quick-reference guide for GitHub Actions workflow patterns. Used by the GitHub orchestrator ecosystem to make informed CI/CD decisions.
+Quick-reference guide for GitHub Actions workflow patterns. Used by the GitHub planner ecosystem to make informed CI/CD decisions.
 
 ## When to Apply
 

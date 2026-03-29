@@ -1,5 +1,5 @@
 ---
-description: "Commit all pending changes on the current branch, splitting into multiple well-structured commits when the changes span distinct concerns."
+description: "Commit pending changes, splitting into logical commits by concern"
 agent: build
 ---
 Commit all pending changes on the current branch, splitting into multiple well-structured commits when the changes span distinct concerns.

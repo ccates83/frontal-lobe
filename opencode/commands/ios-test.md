@@ -12,26 +12,28 @@ Run tests for the current iOS project.
 
 ## Instructions
 
+You are an orchestrator. Do NOT run tests yourself. Plan and delegate.
+
+## Phase 1: Understand Context
+
 1. Read AGENTS.md for project-specific test commands
 2. Detect project type and find the test scheme
-3. If `$ARGUMENTS` is provided:
-   ```bash
-   xcodebuild -project <name>.xcodeproj -scheme <scheme> \
-     -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
-     test -only-testing:<TestTarget>/$ARGUMENTS 2>&1
-   ```
-4. If no arguments:
-   ```bash
-   xcodebuild -project <name>.xcodeproj -scheme <scheme> \
-     -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
-     test 2>&1
-   ```
-5. For SPM projects:
-   ```bash
-   swift test 2>&1
-   ```
-6. Report:
-   - **Status**: PASS or FAIL
-   - **Tests passed**: count
-   - **Tests failed**: count, with names and failure reasons
-   - **Duration**: total test time
+3. Identify the correct simulator destination
+
+## Phase 2: Test
+
+Use the task tool to invoke `@xcode-builder` with:
+- The project type and test scheme detected above
+- Platform: iOS Simulator
+- Action: test
+- Test filter: `$ARGUMENTS` (if provided)
+- For SPM projects: use `swift test` instead
+- Instructions to capture and report the full test output
+
+## Phase 3: Report
+
+Present:
+- **Status**: PASS or FAIL
+- **Tests passed**: count
+- **Tests failed**: count, with names and failure reasons
+- **Duration**: total test time
